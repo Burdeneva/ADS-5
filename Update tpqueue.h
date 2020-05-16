@@ -1,9 +1,8 @@
-#include <cassert>
 template<typename T>
 class TPQueue
 {
   // Сюда помещается описание структуры "Очередь с приоритетами"
-    struct ITEM
+  struct ITEM
     {
         T data;
         ITEM* next;
@@ -14,14 +13,12 @@ public:
     void push(const T&);
     T pop();
     void print() const;
-    
 private:
     TPQueue::ITEM* create(const T&);
     ITEM* head;
-    ITEM* u;
+    ITEM* U;
     ITEM* tail;
 };
-
 template<typename T>
 typename TPQueue<T>::ITEM* TPQueue<T>::create(const T& data)
 {
@@ -42,14 +39,17 @@ void TPQueue<T>::push(const T& inf)
     if (head == nullptr)
     {
         head = create(inf);
-        u = head;
+        U = head;
         tail = head;
     }
     else if (tail->data.prior >= inf.prior)
     {
+
         if (tail->data.prior == inf.prior && tail->data.ch == inf.ch)
         {
+
             tail->data = inf;
+
         }
         else
         {
@@ -62,6 +62,7 @@ void TPQueue<T>::push(const T& inf)
     }
     else
     {
+
         if (tail->data.prior < inf.prior)
         {
             if (inf.prior > head->data.prior)
@@ -72,28 +73,30 @@ void TPQueue<T>::push(const T& inf)
                 head = tmp;
             }
             else
+
                 if (inf.prior == head->data.prior)
+
                     if (inf.ch == head->data.ch)
                         head->data = inf;
                     else
                     {
-                        ITEM* u = nullptr;
-                        u = create(inf);
-                        u->next = head->next;
-                        head->next = u;
+                        ITEM* U = nullptr;
+                        U = create(inf);
+                        U->next = head->next;
+                        head->next = U;
+
                     }
 
                 else
                 {
                     if (inf.prior < head->data.prior)
                     {
-                        ITEM* u = nullptr;
-                        u = create(inf);
-                        u->next = head->next;
-                        head->next = u;
+                        ITEM* U = nullptr;
+                        U = create(inf);
+                        U->next = head->next;
+                        head->next = U;
                     }
                 }
-                
         }
     }
 }
@@ -109,6 +112,7 @@ T TPQueue<T>::pop()
         head = temp;
         return data;
     }
+
 }
 template<typename T>
 void TPQueue<T>::print() const	
@@ -128,7 +132,8 @@ void TPQueue<T>::print() const
 
 struct SYM
 {
-    char ch;
-    int prior;
-    SYM* next;
+	char ch;
+	int  prior;
+};
+	SYM* next;
 };
